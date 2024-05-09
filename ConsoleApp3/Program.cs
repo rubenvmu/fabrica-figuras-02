@@ -1,45 +1,48 @@
-﻿class Program
+﻿using System;
+
+namespace FigurasGeometricas
 {
-    static void Main(string[] args)
+    class Program
     {
-        bool continuar = true;
-
-        while (continuar)
+        static void Main(string[] args)
         {
-            Console.WriteLine("Seleccione una figura:");
-            Console.WriteLine("1. Cuadrado");
-            Console.WriteLine("2. Círculo");
-            Console.WriteLine("0. Salir");
+            bool continuar = true;
 
-            int figuraSeleccionada = int.Parse(Console.ReadLine());
-
-            switch (figuraSeleccionada)
+            while (continuar)
             {
-                case 1:
-                case 2:
-                    TipoDeFigura tipoDeFigura = figuraSeleccionada switch
-                    {
-                        1 => TipoDeFigura.Cuadrado,
-                        2 => TipoDeFigura.Círculo,
-                        _ => throw new ArgumentException("Opción no válida")
-                    };
+                Console.WriteLine("Seleccione una figura:");
+                Console.WriteLine("1. Cuadrado");
+                Console.WriteLine("2. Círculo");
+                Console.WriteLine("0. Salir");
 
-                    Console.Write("Tamaño de la figura: ");
+                int figuraSeleccionada = int.Parse(Console.ReadLine());
+
+                if (figuraSeleccionada == 1)
+                {
+                    Console.Write("Ingrese el tamaño de la figura: ");
                     int valor = int.Parse(Console.ReadLine());
-
-                    var fábrica = new FábricaDeFiguras();
-                    var figura = fábrica.CrearFigura(tipoDeFigura, valor);
-
-                    Console.WriteLine($"{figura}");
-                    Console.WriteLine($"Superficie de la figura: {figura.ObtenerÁreaDeSuperficie():F2}");
-                    Console.WriteLine($"Perímetro de la figura: {figura.ObtenerPerímetro():F2}");
-                    break;
-                case 0:
+                    var figura = new FábricaDeFiguras().CrearFigura(TipoDeFigura.Cuadrado, valor);
+                    Console.WriteLine(figura);
+                    Console.WriteLine($"Área: {figura.ObtenerÁreaDeSuperficie():F2}");
+                    Console.WriteLine($"Perímetro: {figura.ObtenerPerímetro():F2}");
+                }
+                else if (figuraSeleccionada == 2)
+                {
+                    Console.Write("Ingrese el radio del círculo: ");
+                    int radio = int.Parse(Console.ReadLine());
+                    var figura = new FábricaDeFiguras().CrearFigura(TipoDeFigura.Círculo, radio);
+                    Console.WriteLine(figura);
+                    Console.WriteLine($"Área: {figura.ObtenerÁreaDeSuperficie():F2}");
+                    Console.WriteLine($"Circunferencia: {figura.ObtenerPerímetro():F2}");
+                }
+                else if (figuraSeleccionada == 0)
+                {
                     continuar = false;
-                    break;
-                default:
-                    Console.WriteLine("Opción no válida, inténtelo de nuevo.");
-                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Opción inválida, inténtelo de nuevo.");
+                }
             }
         }
     }
