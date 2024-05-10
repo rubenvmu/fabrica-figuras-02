@@ -64,8 +64,8 @@ class Program
                 while (!volverMenuPrincipal)
                 {
                     Console.WriteLine("Panel de negocio de Ordenadores Obdulio S.L.:");
-                    Console.WriteLine("1. Ver las características de los ordenadores:");
-                    Console.WriteLine("2. Ver total facturado en el día");
+                    Console.WriteLine("1. (PRINT) Ver las características de los ordenadores:");
+                    Console.WriteLine("2. (PRINT) Ver total facturado en el día");
                     Console.WriteLine("0. Volver al menú principal");
                     Console.WriteLine("");
 
@@ -73,23 +73,22 @@ class Program
 
                     if (opcionRegistro == 1)
                     {
-                        Console.WriteLine("Características de los ordenadores:");
-                        Console.WriteLine("Lento: Precio " + new OrdenadorLento().Precio + " $" + new OrdenadorLento().Garantia + " Años de garantía, " + new OrdenadorLento().ObsolescenciaProgramada + " años de obsolescencia programada.");
-                        Console.WriteLine("Normal: Precio " + new OrdenadorNormal().Precio + " $" + new OrdenadorNormal().Garantia + " Años de garantía, " + new OrdenadorNormal().ObsolescenciaProgramada + " años de obsolescencia programada.");
-                        Console.WriteLine("Gamer: Precio " + new OrdenadorGamer().Precio + " $" + new OrdenadorGamer().Garantia + " Años de garantía, " + new OrdenadorGamer().ObsolescenciaProgramada + " años de obsolescencia programada.");
-                        Console.WriteLine("");
+                        Console.WriteLine("──────────────────────────────────────────────────────────────────────────────────");
+                        Console.WriteLine(" Características de los ordenadores:");
+                        Console.WriteLine(" Lento: Precio " + new OrdenadorLento().Precio + "$, " + new OrdenadorLento().Garantia + " Años de garantía " + new OrdenadorLento().ObsolescenciaProgramada + " años de obsolescencia programada.");
+                        Console.WriteLine(" Normal: Precio " + new OrdenadorNormal().Precio + "$, " + new OrdenadorNormal().Garantia + " Años de garantía " + new OrdenadorNormal().ObsolescenciaProgramada + " años de obsolescencia programada.");
+                        Console.WriteLine(" Gamer: Precio " + new OrdenadorGamer().Precio + "$, " + new OrdenadorGamer().Garantia + " Años de garantía " + new OrdenadorGamer().ObsolescenciaProgramada + " años de obsolescencia programada.");
+                        Console.WriteLine("──────────────────────────────────────────────────────────────────────────────────");
                     }
                     if (opcionRegistro == 2)
                     {
+                        Console.WriteLine("──────────────────────────────────────────────────────────────────────────────────");
                         Console.WriteLine("Total facturado en el día: (precio)");
+                        Console.WriteLine("──────────────────────────────────────────────────────────────────────────────────");
                     }
                     else if (opcionRegistro == 0)
                     {
                         volverMenuPrincipal = true;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Opción inválida, por favor seleccione una opción válida.");
                     }
                 }
             }
