@@ -40,4 +40,5 @@ namespace ConsoleApp3
     {
         public OrdenadorGamer() : base(1000, 4) { }
     }
+    
 }

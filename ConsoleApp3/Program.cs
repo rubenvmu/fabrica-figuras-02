@@ -1,9 +1,16 @@
 ﻿using ConsoleApp3;
+using System.Reflection;
 
 class Program
 {
     static void Main(string[] args)
     {
+        List<InterfazOrdenadores> ordenadores = new List<InterfazOrdenadores>();
+
+        ordenadores.Add(new OrdenadorLento());
+        ordenadores.Add(new OrdenadorNormal());
+        ordenadores.Add(new OrdenadorGamer());
+
         bool continuar = true;
 
         while (continuar)
@@ -66,7 +73,8 @@ class Program
                     Console.WriteLine("Panel de negocio de Ordenadores Obdulio S.L.:");
                     Console.WriteLine("1. (PRINT) Ver las características de los ordenadores:");
                     Console.WriteLine("2. (PRINT) Ver total facturado en el día");
-                    Console.WriteLine("0. Volver al menú principal");
+                    Console.WriteLine("3. (INTRO) Registrar una venta");
+                    Console.WriteLine("0. Salir");
                     Console.WriteLine("");
 
                     int opcionRegistro = int.Parse(Console.ReadLine());
@@ -82,25 +90,40 @@ class Program
                     }
                     if (opcionRegistro == 2)
                     {
-                        Console.WriteLine("──────────────────────────────────────────────────────────────────────────────────");
-                        Console.WriteLine("Total facturado en el día: (precio)");
-                        Console.WriteLine("──────────────────────────────────────────────────────────────────────────────────");
+                        while (true)
+                        {
+                            Console.WriteLine("──────────────────────────────────────────────────────────────────────────────────");
+                            Console.WriteLine("Menú de opciones:");
+                            Console.WriteLine("1. Total facturado en el día" + new Tienda().TotalFacturado);
+                            Console.WriteLine("2. Número de ordenadores vendidos" + new Tienda().NumeroOrdenadoresVendidos);
+                            Console.WriteLine("3. Ordenador más barato" + new Tienda().OrdenadorMasBarato);
+                            Console.WriteLine("4. Ordenador más caro" + new Tienda().OrdenadorMasCaro);
+                            Console.WriteLine("5. Precio Medio por ordenador" + new Tienda().PrecioMedioPorOrdenador);
+                            Console.WriteLine("6. Número de ordenadores que tienen un precio superior a 125" + new Tienda().NumeroOrdenadoresPrecioSuperior125);
+                            Console.WriteLine("7. Salir");
+                            Console.WriteLine("──────────────────────────────────────────────────────────────────────────────────");
+                        }
                     }
-                    else if (opcionRegistro == 0)
+                    if (opcionRegistro == 3)
                     {
-                        volverMenuPrincipal = true;
+                        while (continuar)
+                        {
+                            Console.WriteLine("1. Registrar una venta");
+                        }
+                    }
+                    else if (opcion == 4)
+                    {
+                        continuar = false;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Opción inválida, inténtelo de nuevo.");
                     }
                 }
-            }
-            else if (opcion == 3)
-            {
-                continuar = false;
-            }
-            else
-            {
-                Console.WriteLine("Opción inválida, inténtelo de nuevo.");
             }
         }
     }
 }
+
+
 
