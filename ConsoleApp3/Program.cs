@@ -1,82 +1,107 @@
-﻿using System;
+﻿using ConsoleApp3;
 
-namespace FigurasGeometricas
+class Program
 {
-    class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
+        bool continuar = true;
+
+        while (continuar)
         {
-            bool continuar = true;
+            Console.WriteLine("Seleccione una opción:");
+            Console.WriteLine("1. Calcular superficies geométricas");
+            Console.WriteLine("2. Acceder al panel de negocio de Ordenadores Obdulio S.L.");
+            Console.WriteLine("3. Salir");
+            Console.WriteLine("");
 
-            while (continuar)
+            int opcion = int.Parse(Console.ReadLine());
+
+            if (opcion == 1)
             {
-                Console.WriteLine("Seleccione una figura:");
-                Console.WriteLine("1. Cuadrado");
-                Console.WriteLine("2. Círculo");
-                Console.WriteLine("0. Salir");
+                bool continuarFabricar = true;
 
-                int figuraSeleccionada = int.Parse(Console.ReadLine());
+                while (continuarFabricar)
+                {
+                    Console.WriteLine("Seleccione una figura:");
+                    Console.WriteLine("1. Cuadrado");
+                    Console.WriteLine("2. Círculo");
+                    Console.WriteLine("0. Salir");
 
-                if (figuraSeleccionada == 1)
-                {
-                    Console.Write("Ingrese el tamaño de la figura: ");
-                    int valor = int.Parse(Console.ReadLine());
-                    var figura = new FábricaDeFiguras().CrearFigura(TipoDeFigura.Cuadrado, valor);
-                    Console.WriteLine(figura);
-                    Console.WriteLine($"Área: {figura.ObtenerÁreaDeSuperficie():F2}");
-                    Console.WriteLine($"Perímetro: {figura.ObtenerPerímetro():F2}");
+                    int figuraSeleccionada = int.Parse(Console.ReadLine());
+
+                    if (figuraSeleccionada == 1)
+                    {
+                        Console.Write("Ingrese el tamaño de la figura: ");
+                        int valor = int.Parse(Console.ReadLine());
+                        var figura = new FábricaDeOrdenadores().CrearFigura(TipoDeFigura.Cuadrado, valor);
+                        Console.WriteLine(figura);
+                        Console.WriteLine($"Área: {figura.ObtenerÁreaDeSuperficie():F2}");
+                        Console.WriteLine($"Perímetro: {figura.ObtenerPerímetro():F2}");
+                    }
+                    else if (figuraSeleccionada == 2)
+                    {
+                        Console.Write("Ingrese el radio del círculo: ");
+                        int radio = int.Parse(Console.ReadLine());
+                        var figura = new FábricaDeOrdenadores().CrearFigura(TipoDeFigura.Círculo, radio);
+                        Console.WriteLine(figura);
+                        Console.WriteLine($"Área: {figura.ObtenerÁreaDeSuperficie():F2}");
+                        Console.WriteLine($"Circunferencia: {figura.ObtenerPerímetro():F2}");
+                    }
+                    else if (figuraSeleccionada == 0)
+                    {
+                        continuarFabricar = false;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Opción inválida, inténtelo de nuevo.");
+                    }
                 }
-                else if (figuraSeleccionada == 2)
+            }
+            if (opcion == 2)
+            {
+                bool volverMenuPrincipal = false;
+
+                while (!volverMenuPrincipal)
                 {
-                    Console.Write("Ingrese el radio del círculo: ");
-                    int radio = int.Parse(Console.ReadLine());
-                    var figura = new FábricaDeFiguras().CrearFigura(TipoDeFigura.Círculo, radio);
-                    Console.WriteLine(figura);
-                    Console.WriteLine($"Área: {figura.ObtenerÁreaDeSuperficie():F2}");
-                    Console.WriteLine($"Circunferencia: {figura.ObtenerPerímetro():F2}");
+                    Console.WriteLine("Panel de negocio de Ordenadores Obdulio S.L.:");
+                    Console.WriteLine("1. Ver las características de los ordenadores:");
+                    Console.WriteLine("2. Ver total facturado en el día");
+                    Console.WriteLine("0. Volver al menú principal");
+                    Console.WriteLine("");
+
+                    int opcionRegistro = int.Parse(Console.ReadLine());
+
+                    if (opcionRegistro == 1)
+                    {
+                        Console.WriteLine("Características de los ordenadores:");
+                        Console.WriteLine("Lento: Precio " + new OrdenadorLento().Precio + " $" + new OrdenadorLento().Garantia + " Años de garantía, " + new OrdenadorLento().ObsolescenciaProgramada + " años de obsolescencia programada.");
+                        Console.WriteLine("Normal: Precio " + new OrdenadorNormal().Precio + " $" + new OrdenadorNormal().Garantia + " Años de garantía, " + new OrdenadorNormal().ObsolescenciaProgramada + " años de obsolescencia programada.");
+                        Console.WriteLine("Gamer: Precio " + new OrdenadorGamer().Precio + " $" + new OrdenadorGamer().Garantia + " Años de garantía, " + new OrdenadorGamer().ObsolescenciaProgramada + " años de obsolescencia programada.");
+                        Console.WriteLine("");
+                    }
+                    if (opcionRegistro == 2)
+                    {
+                        Console.WriteLine("Total facturado en el día: (precio)");
+                    }
+                    else if (opcionRegistro == 0)
+                    {
+                        volverMenuPrincipal = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Opción inválida, por favor seleccione una opción válida.");
+                    }
                 }
-                else if (figuraSeleccionada == 0)
-                {
-                    continuar = false;
-                }
-                else
-                {
-                    Console.WriteLine("Opción inválida, inténtelo de nuevo.");
-                }
+            }
+            else if (opcion == 3)
+            {
+                continuar = false;
+            }
+            else
+            {
+                Console.WriteLine("Opción inválida, inténtelo de nuevo.");
             }
         }
     }
 }
 
-/*
-
-bool continuar = true; This line declares a boolean variable continuar and initializes it to true. This variable is used to control the loop that runs the program.
-
-while (continuar) { ... } This line starts a while loop that continues as long as continuar is true.
-
-Console.WriteLine("Seleccione una figura:"); Console.WriteLine("1. Cuadrado"); Console.WriteLine("2. Círculo"); Console.WriteLine("0. Salir"); These lines display the available options to the user: selecting a figure (Square or Circle) or exiting the program (Salir).
-
-int figuraSeleccionada = int.Parse(Console.ReadLine()); This line reads the user's input as a string and converts it to an integer, storing it in the figuraSeleccionada variable.
-
-switch (figuraSeleccionada) { ... } This line starts a switch statement that checks the value of figuraSeleccionada and performs different actions based on its value.
-
-case 1: case 2: These lines specify the actions to perform when the user selects either Square (1) or Circle (2).
-
-TipoDeFigura tipoDeFigura = figuraSeleccionada switch { ... }; This line uses the switch expression (available since C# 8.0) to determine the TipoDeFigura based on the user's input.
-
-Console.Write("Tamaño de la figura: "); int valor = int.Parse(Console.ReadLine()); These lines display a message asking the user to input the size of the figure and read the user's input as an integer, storing it in the valor variable.
-
-var fábrica = new FábricaDeFiguras(); var figura = fábrica.CrearFigura(tipoDeFigura, valor); These lines create a new instance of the FábricaDeFiguras class and use it to create a figure based on the selected type and size.
-
-Console.WriteLine($"{figura}"); Console.WriteLine($"Superficie {figura.ObtenerÁreaDeSuperficie():F2}"); Console.WriteLine($"Perímetro {figura.ObtenerPerímetro():F2}"); These lines display the figure's information, such as its type, size, surface area, and perimeter.
-
-case 0: This line specifies the action to perform when the user selects the option to exit (0).
-
-continuar = false; This line sets continuar to false to exit the while loop.
-
-default: This line specifies the action to perform when the user's input is not valid (not 0, 1, or 2).
-
-Console.WriteLine("Opción no válida, inténtelo de nuevo."); This line displays a message asking the user to input a valid option.
-
-The Main method contains a while loop that continues until the user decides to exit (0). Inside the loop, the program displays the available options, reads the user's input, creates a figure based on the selected type and size, and displays the figure's information. If the user's input is not valid, the program displays an error message and continues the loop.
-*/
